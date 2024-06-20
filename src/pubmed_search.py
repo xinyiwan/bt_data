@@ -9,7 +9,6 @@ from pathlib import Path
 import pandas as pd
 import tqdm
 from selenium import webdriver
-from chromedriver_py import binary_path
 
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.action_chains import ActionChains
@@ -35,7 +34,6 @@ class PubMedDownloader:
                     "profile.default_content_settings.popups": 0,
                 }
                 chrome_options.add_experimental_option("prefs", prefs)
-                chrome_options.binary_location = '/trinity/home/xwan/bt_data/.venv/lib64/python3.9/site-packages/chromedriver_py/chromedriver_linux64'
                 
 
             # chrome_options.add_argument("--pref", {
@@ -44,8 +42,8 @@ class PubMedDownloader:
             # })
             chrome_options.add_argument("--disable-extensions")
             chrome_options.add_argument("--disable-gpu")
-            chrome_options.add_argument("--no-sandbox") # linux only
-            chrome_options.add_argument("--headless")
+            # chrome_options.add_argument("--no-sandbox") # linux only
+            # chrome_options.add_argument("--headless")
             chrome_options.headless = True # also works
 
             # executable_path = executable_path or "chromedriver"
@@ -70,7 +68,7 @@ class PubMedDownloader:
         self.last_url = url
         # time.sleep()
         # 2 | setWindowSize | 1920x1055 |
-        # self.driver.set_window_size(1920, 1055)
+        self.driver.set_window_size(1920, 1055)
         # 3 | click | id=save-results-panel-trigger |
         WebDriverWait(self.driver, self.delay).until(
             expected_conditions.presence_of_element_located((By.ID, "save-results-panel-trigger"))
