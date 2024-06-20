@@ -8,7 +8,7 @@ options.add_argument('--no-sandbox')
 
 
 print(binary_path)
-# svc = webdriver.ChromeService(executable_path=binary_path)
+svc = webdriver.ChromeService(executable_path=binary_path)
 driver = webdriver.Chrome(options = options, service=svc)
 
 # path = '/trinity/home/xwan/bt_data/chromedriver-linux64/chromedriver'
