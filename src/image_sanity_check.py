@@ -10,8 +10,8 @@ from PIL import Image
 from torch import nn
 
 import clip
-from MONET.datamodules.components.base_dataset import BaseDataset
-from MONET.utils.io import load_hdf5, load_pkl, save_to_hdf5, save_to_pkl
+from datamodules.components.base_dataset import BaseDataset
+from utils.io import load_hdf5, load_pkl, save_to_hdf5, save_to_pkl
 
 
 def convert_image_to_rgb(image):

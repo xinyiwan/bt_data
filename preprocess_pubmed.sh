@@ -36,8 +36,9 @@
 # --extension .jpg,.jpeg,.png,.tif,.tiff,.gif,.bmp;
 
 # 2.2 image sanity check
-# taskset -c 0,1,2,3,4,5,6,7 python src/MONET/preprocess/image_sanity_check.py \
-python src/image_sanity_check.py \
---input data/pubmed/glob/images.pkl \
---output data/pubmed/glob/images.uncorrupted.pkl \
+# python src/image_sanity_check.py \
+
+taskset -c 0,1,2,3,4,5,6,7 python src/image_sanity_check.py \
+--input /data/archive/xwan/bt_pmd/glob/images.pkl \
+--output /data/archive/xwan/bt_pmd/glob/images.uncorrupted.pkl \
 --field images

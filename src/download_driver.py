@@ -5,7 +5,8 @@ import os
 import ssl
 
 
-# ssl._create_default_https_context = ssl._create_unverified_context
+ssl._create_default_https_context = ssl._create_unverified_context
+
 # # get the latest chrome driver version number
 # url = 'https://chromedriver.storage.googleapis.com/LATEST_RELEASE'
 # response = requests.get(url)
@@ -13,13 +14,17 @@ import ssl
 
 # build the donwload url
 # download_url = "https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.61/linux64/chrome-linux64.zip"
-download_url = "https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.61/linux64/chromedriver-linux64.zip"
+# download_url = "https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.61/linux64/chromedriver-linux64.zip"
+
+# chrome driver compatible to glibc 2.17
+download_url = "https://chromedriver.storage.googleapis.com/2.32/chromedriver_linux64.zip"
+
 
 # download the zip file using the url built above
-latest_driver_zip = wget.download(download_url,'chromedriver')
+latest_driver_zip = wget.download(download_url,'chromedriver_glibc217.zip')
 
 # extract the zip file
 with zipfile.ZipFile(latest_driver_zip, 'r') as zip_ref:
     zip_ref.extractall() # you can specify the destination folder path here
 # delete the zip file downloaded above
-os.remove(latest_driver_zip)
+# os.remove(latest_driver_zip)
