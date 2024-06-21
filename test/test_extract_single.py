@@ -11,7 +11,9 @@ include_extension_list = ['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.gif', '.bm
 local_dir = 'data/pubmed'
 local_dir = Path(local_dir)
 
-file = 'pub/pmc/oa_package/2e/64/PMC11126675.tar.gz'
+# file = 'pub/pmc/oa_package/2e/64/PMC11126675.tar.gz'
+file = 'pub/pmc/oa_package/a5/45/PMC10472599.tar.gz'
+
 local_path = local_dir / file
 os.makedirs(os.path.dirname(local_path), exist_ok=True)
 blocksize = 33554
