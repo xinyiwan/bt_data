@@ -19,9 +19,25 @@
 # --output /Users/xinyi/Documents/GitHub/bt_data/tmp_data/oa_file_list_onlykeywords.csv
 
 
-# 1.3 download dataset
-python src/pubmed_download.py download \
---input tmp_data/oa_file_list_onlykeywords.csv \
---output data/pubmed/ \
---extension .jpg,.jpeg,.png,.tif,.tiff,.gif,.bmp .xml,.nxml \
---thread 32
+# # 1.3 download dataset
+# python src/pubmed_download.py download \
+# --input tmp_data/oa_file_list_onlykeywords.csv \
+# --output data/pubmed/ \
+# --extension .jpg,.jpeg,.png,.tif,.tiff,.gif,.bmp .xml,.nxml \
+# --thread 1
+
+# 2. quality control
+# 2.1 globbing files
+# python src/glob_files.py \
+# --input data/pubmed \
+# --output data/pubmed/glob/images.pkl \
+# --field images \
+# --style slash_to_underscore \
+# --extension .jpg,.jpeg,.png,.tif,.tiff,.gif,.bmp;
+
+# 2.2 image sanity check
+# taskset -c 0,1,2,3,4,5,6,7 python src/MONET/preprocess/image_sanity_check.py \
+python src/image_sanity_check.py \
+--input data/pubmed/glob/images.pkl \
+--output data/pubmed/glob/images.uncorrupted.pkl \
+--field images
