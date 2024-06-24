@@ -18,7 +18,7 @@ def get_oa_list(search_csv, term_list=["bone", "musc"]):
 
     oa_file_list = pd.read_csv(
         "https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_file_list.csv", dtype={"PMID": str}
-    )  # PMC always 4,970,445
+    )  # PMC always 6m +
 
     oa_file_list_PMID = oa_file_list.set_index("PMID").loc[
         list(set(oa_file_list["PMID"]).intersection(set(search_csv["PMID"])))
