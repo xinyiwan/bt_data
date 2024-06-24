@@ -9,7 +9,7 @@ import tqdm
 from PIL import Image
 from torch import nn
 
-import clip
+# import clip
 from datamodules.components.base_dataset import BaseDataset
 from utils.io import load_hdf5, load_pkl, save_to_hdf5, save_to_pkl
 
@@ -125,8 +125,8 @@ if __name__ == "__main__":
     relative_path = args.relative_path
     # device = args.device
 
-    clip_model, clip_preprocess = clip.load("ViT-B/32", device="cpu", jit=False)
-    clip_model.eval()
+    # clip_model, clip_preprocess = clip.load("ViT-B/32", device="cpu", jit=False)
+    # clip_model.eval()
 
     print("loading data...")
     if path_input.suffix == ".hdf5":
