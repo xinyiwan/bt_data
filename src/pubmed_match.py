@@ -393,13 +393,24 @@ if __name__ == "__main__":
     else:
         raise ValueError(f"Unknown file type: {path_xml.suffix}")
 
-    image_article_key = {"_".join(key.split("_")[:7]) for key in image_dict.keys()}
-    xml_article_key = {"_".join(key.split("_")[:7]) for key in xml_dict.keys()}
+    image_article_key = {"_".join(key.split("_")[:6]) for key in image_dict.keys()}
+    xml_article_key = {"_".join(key.split("_")[:6]) for key in xml_dict.keys()}
+
+    # find two exceptions that don't have xml files 
+    image_article_key.remove("pmc_oa_package_47_96_PMC10630588")
+    del image_dict['pmc_oa_package_47_96_PMC10630588_amjcaserep-24-e941498-g004.jpg']
+
+    image_article_key.remove("pmc_oa_package_a8_7d_PMC10698459")
+    del image_dict['pmc_oa_package_a8_7d_PMC10698459_WJCC-11-7673-g002.gif']
+
+
+
+
     assert image_article_key.issubset(xml_article_key), "Image article not in xml article"
 
     xml_dict_filtered = OrderedDict()
     for key in xml_dict.keys():
-        if "_".join(key.split("_")[:7]) in image_article_key:
+        if "_".join(key.split("_")[:6]) in image_article_key:
             xml_dict_filtered[key] = xml_dict[key]
 
     print("Converting to binary...")
@@ -468,13 +479,21 @@ if __name__ == "__main__":
     print(f"After dropping duplicated {len(fig_info_final_df)}")
 
     image_key_list = [os.path.splitext(key)[0] for key in image_dict.keys()]
+
+    # find duplicate image key list
+    import collections
+    dpc = [item for item, count in collections.Counter(image_key_list).items() if count > 1]
+
+    del image_dict['pmc_oa_package_0f_f6_PMC9986859_cureus-0015-00000034618-i05.gif']
+    image_key_list = [os.path.splitext(key)[0] for key in image_dict.keys()]
+
     assert len(set(image_key_list)) == len(image_dict.keys()), "Duplicate image key"
 
     fig_info_final_df["image_key_1"] = fig_info_final_df.apply(
-        lambda x: "_".join(x["article_id"].split("_")[:7]) + "_" + x["href"], axis=1
+        lambda x: "_".join(x["article_id"].split("_")[:6]) + "_" + x["href"], axis=1
     )
     fig_info_final_df["image_key_2"] = fig_info_final_df.apply(
-        lambda x: "_".join(x["article_id"].split("_")[:7]) + "_" + os.path.splitext(x["href"])[0],
+        lambda x: "_".join(x["article_id"].split("_")[:6]) + "_" + os.path.splitext(x["href"])[0],
         axis=1,
     )
     fig_info_final_df_all = pd.concat(

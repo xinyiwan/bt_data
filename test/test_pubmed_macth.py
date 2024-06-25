@@ -18,10 +18,18 @@ xml_article_key = {"_".join(key.split("_")[:6]) for key in xml_dict.keys()}
 # assert image_article_key.issubset(xml_article_key), "Image article not in xml article"
 
 
-for t in image_article_key:
-    if t in xml_article_key:
-        pass
-    else:
-        print("exp")
-        print(t)
+# for t in image_article_key:
+#     if t in xml_article_key:
+#         pass
+#     else:
+#         print("exp")
+#         print(t)
 
+
+image_key_list = [os.path.splitext(key)[0] for key in image_dict.keys()]
+import collections
+dpc = [item for item, count in collections.Counter(image_key_list).items() if count > 1]
+
+del image_dict['pmc_oa_package_0f_f6_PMC9986859_cureus-0015-00000034618-i05.gif']
+image_key_list = [os.path.splitext(key)[0] for key in image_dict.keys()]
+print(len(set(image_key_list)) == len(image_dict.keys()))
