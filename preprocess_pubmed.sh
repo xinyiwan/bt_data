@@ -50,7 +50,7 @@ source "/trinity/home/xwan/bt_data/.venv/bin/activate"
 # --style slash_to_underscore \
 # --extension .jpg,.jpeg,.png,.tif,.tiff,.gif,.bmp;
 
-# # 2.2 image sanity check
+# 2.2 image sanity check
 # taskset -c 0,1,2,3,4,5,6,7 python src/image_sanity_check.py \
 # --input /data/archive/xwan/bt_pmd/glob/images.pkl \
 # --output /data/archive/xwan/bt_pmd/glob/images.uncorrupted.pkl \
@@ -142,10 +142,10 @@ source "/trinity/home/xwan/bt_data/.venv/bin/activate"
 # --relative-path
 
 # # match image and text
-python src/pubmed_match.py \
---image /data/archive/xwan/bt_pmd/glob/filtered/images.uncorrupted.bt2.pkl \
---xml /data/archive/xwan/bt_pmd/glob/xml.pkl \
---output /data/archive/xwan/bt_pmd/glob/xml.matched.pkl
+# python src/pubmed_match.py \
+# --image /data/archive/xwan/bt_pmd/glob/filtered/images.uncorrupted.bt2.pkl \
+# --xml /data/archive/xwan/bt_pmd/glob/xml.pkl \
+# --output /data/archive/xwan/bt_pmd/glob/xml.matched.pkl
 
 # taskset -c 0,1,2,3,4,5,6,7 python src/image_sanity_check.py \
 # --input /sdata/chanwkim/dermatology_datasets/pubmed/images.uncorrupted.dermonlyv4.pkl \
@@ -154,10 +154,10 @@ python src/pubmed_match.py \
 # --relative-path
 
 # finalize
-cp /data/archive/xwan/bt_pmd/glob/xml.matched.pkl /data/archive/xwan/bt_pmd/glob/final_text.pkl;
+# cp /data/archive/xwan/bt_pmd/glob/xml.matched.pkl /data/archive/xwan/bt_pmd/glob/final_text.pkl;
 
-python src/save_as_path.py \
---input /data/archive/xwan/bt_pmd/glob/filtered/images.uncorrupted.bt2.pkl \
---field images \
---output /data/archive/xwan/bt_pmd/glob/final_image
+# python src/save_as_path.py \
+# --input /data/archive/xwan/bt_pmd/glob/filtered/images.uncorrupted.bt2.pkl \
+# --field images \
+# --output /data/archive/xwan/bt_pmd/glob/final_image
 
