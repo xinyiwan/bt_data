@@ -15,7 +15,7 @@ def str_to_token(caption_str, use_random=True):
         # print("use random", use_random)
         # print("try sampling", np.random.randint(10), random.randint(0, 9))
         try:
-            caption_tokenized = clip.tokenize(caption_str, truncate=False)
+            caption_tokenized = clip.tokenize(caption_str, truncate=True)
         except RuntimeError:
             sentences = nltk.sent_tokenize(caption_str)  #
             words = nltk.word_tokenize(caption_str)
