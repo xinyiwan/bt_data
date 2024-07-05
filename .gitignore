@@ -38,6 +38,8 @@ chromedriver-linux64/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+logs/*
+gpu_logs/*
 
 # Unit test / coverage reports
 htmlcov/

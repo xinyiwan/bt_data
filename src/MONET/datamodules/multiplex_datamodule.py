@@ -908,8 +908,8 @@ if __name__ == "__main__":
     root = pyrootutils.setup_root(__file__, pythonpath=True)
     cfg = omegaconf.OmegaConf.load(root / "configs" / "datamodule" / "multiplex.yaml")
     # cfg.data_dir = str(root / "data" / "pubmed_final")
-    cfg.data_dir = "/sdata/chanwkim/dermatology_datasets/"
-    cfg.dataset_name_train = "fitzpatrick17kcleandisease_train"
+    cfg.data_dir = "/data/archive/xwan/bt_pmd/"
+    cfg.dataset_name_train = "pubmed=train"
     cfg.split_seed = 42
     dm = hydra.utils.instantiate(cfg)
     dm.setup()
