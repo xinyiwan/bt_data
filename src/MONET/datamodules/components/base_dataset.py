@@ -9,7 +9,7 @@ import torchvision.transforms as T
 from PIL import Image
 from torch import nn
 
-from utils.loader import custom_collate
+from MONET.utils.loader import custom_collate
 
 # from MONET.utils.io import save_to_hdf5
 
