@@ -2,5 +2,5 @@ defaults:
   - default.yaml
 
 # path to data directory
-data_dir: /sdata/chanwkim/dermatology_datasets/
-log_dir: /projects/leelab2/chanwkim/dermatology_datasets/logs
+data_dir: /data/archive/xwan/bt_pmd
+log_dir: /trinity/home/xwan/bt_data/logs
