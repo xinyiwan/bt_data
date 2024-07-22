@@ -77,7 +77,8 @@ class ContrastiveLitModule(LightningModule):
         self.val_loss_best = MinMetric()
         self.val_auc_best = MaxMetric()
 
-    def forward(self, image, text):
+    def forward(self, batch: Any):
+        image, text = batch["image"], batch["text"]
         return self.net(image, text)
 
     def model_step_with_image_text(self, batch: Any):
@@ -329,9 +330,9 @@ class ContrastiveLitModule(LightningModule):
             )
             # update and log metrics
             self.test_loss(loss)
-            self.log("test/loss", self.test_loss, on_step=False, on_epoch=True, prog_bar=True)
+            self.log("test/loss", self.test_loss, on_step=False, on_epoch=True, prog_bar=True)            
 
-            return {"loss": loss}
+            return {"loss": loss, "logits": logits}
         elif self.hparams.test_mode == "label":
             # print("vali#dation_step_end", batch_parts["metadata"])
             return {
@@ -394,6 +395,7 @@ class ContrastiveLitModule(LightningModule):
     def on_test_end(self):
         self.test_text_features = OrderedDict()
         self.test_metadata = OrderedDict()
+        
 
     def configure_optimizers(self):
         """Choose what optimizers and learning-rate schedulers to use in your optimization.
